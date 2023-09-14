@@ -7,7 +7,7 @@ import './Carts.css'
 import Selected from "../Selected/Selected";
 
 
-const Carts = ({handleAdd, selectName}) => {
+const Carts = ({handleAdd, selectName, totalCost}) => {
     const [carts, setCarts] = useState([]);
 
     useEffect(()=>{
@@ -26,6 +26,7 @@ const Carts = ({handleAdd, selectName}) => {
         <div className=" ml-5 w-1/4">
         <h1 className="text-center text-3xl font-bold">Total Budget: $20000</h1>
             <hr />
+        <h1>Total cost: ${totalCost}</h1>
             {
                 selectName.map((select, idx) => <Selected key={idx} select={select}></Selected>)
             }
