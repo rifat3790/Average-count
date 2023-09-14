@@ -7,7 +7,8 @@ function App() {
 
   const [selectName, setSelectName] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
-  const [remaining, setRemaining] = useState(0);
+  const [remaining, setRemaining] = useState(20000);
+  // const [remove, setRemove] = useState([]);
 
   let Budget = 20000;
 
@@ -39,6 +40,13 @@ function App() {
       }
     }
   }
+
+  const handleRemove = (id) => {
+    // console.log("removing");
+    // console.log(id);
+    const removeCart = selectName.filter(cart => cart.id !== id);
+    setSelectName(removeCart);
+  };
   
 
   
@@ -47,7 +55,7 @@ function App() {
     <>
       
       <h1>Hello world!</h1>
-      <Carts remaining={remaining} totalCost={totalCost} selectName={selectName} handleAdd={handleAdd}></Carts>
+      <Carts remaining={remaining} totalCost={totalCost} selectName={selectName} handleAdd={handleAdd} handleRemove={handleRemove}></Carts>
     </>
   )
 }
