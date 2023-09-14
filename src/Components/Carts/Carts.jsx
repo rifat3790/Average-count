@@ -7,7 +7,7 @@ import './Carts.css'
 import Selected from "../Selected/Selected";
 
 
-const Carts = ({handleAdd, selectName, totalCost}) => {
+const Carts = ({handleAdd, selectName, totalCost, remaining}) => {
     const [carts, setCarts] = useState([]);
 
     useEffect(()=>{
@@ -23,10 +23,12 @@ const Carts = ({handleAdd, selectName, totalCost}) => {
             }
         </div>
         {/* select item */}
-        <div className=" ml-5 w-1/4">
+        <div className=" ml-5 lg:w-1/4">
         <h1 className="text-center text-3xl font-bold">Total Budget: $20000</h1>
             <hr />
-        <h1>Total cost: ${totalCost}</h1>
+        <h1 className="text-xl font-medium text-center">Remaining: ${remaining}</h1>
+        <h1 className="text-xl font-medium text-center">Total cost: ${totalCost}</h1>
+        <hr className="mb-2" />
             {
                 selectName.map((select, idx) => <Selected key={idx} select={select}></Selected>)
             }

@@ -7,7 +7,7 @@ function App() {
 
   const [selectName, setSelectName] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
-  const [remaining, setRemaining] = useState([]);
+  const [remaining, setRemaining] = useState(0);
 
   let Budget = 20000;
 
@@ -23,11 +23,20 @@ function App() {
       return alert("Already booked. Please try again another.")
     }
     else{
-      setSelectName([...selectName, cart]);
+      
       selectName.forEach(salary => {
         temp += salary.salary;
       });
-      setTotalCost(temp);
+
+      const remain = Budget - temp;
+      if(remain < 0){
+        return alert("Not enough balance.")
+      }
+      else{
+        setRemaining(remain);
+        setTotalCost(temp);
+        setSelectName([...selectName, cart]);
+      }
     }
   }
   
@@ -38,7 +47,7 @@ function App() {
     <>
       
       <h1>Hello world!</h1>
-      <Carts totalCost={totalCost} selectName={selectName} handleAdd={handleAdd}></Carts>
+      <Carts remaining={remaining} totalCost={totalCost} selectName={selectName} handleAdd={handleAdd}></Carts>
     </>
   )
 }
