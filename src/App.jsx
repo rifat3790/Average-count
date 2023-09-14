@@ -41,12 +41,17 @@ function App() {
     }
   }
 
-  const handleRemove = (id) => {
-    // console.log("removing");
-    // console.log(id);
-    const removeCart = selectName.filter(cart => cart.id !== id);
-    setSelectName(removeCart);
+  const handleRemove = (remove) => {
+    const updatedSelectName = selectName.filter(cart => cart.id !== remove.id);
+  
+    const newTotalCost = updatedSelectName.reduce((total, cart) => total + cart.salary, 0);
+    const newRemaining = Budget - newTotalCost;
+  
+    setSelectName(updatedSelectName);
+    setTotalCost(newTotalCost);
+    setRemaining(newRemaining);
   };
+  
   
 
   

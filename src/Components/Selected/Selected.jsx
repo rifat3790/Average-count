@@ -5,7 +5,7 @@
 const Selected = ({select, handleRemove}) => {
     // console.log(select);
     return (
-        <div onClick={()=>handleRemove(select.id)}>
+        <div onClick={()=>handleRemove(select)}>
             {/* <h1 className="text-center text-3xl font-bold">Total Budget: $20000</h1>
             <hr /> */}
             {/* <h1>Length: {select.length}</h1> */}
