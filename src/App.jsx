@@ -2,6 +2,9 @@
 // import './App.css'
 import { useState } from 'react'
 import Carts from './Components/Carts/Carts'
+import { ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
 
@@ -14,14 +17,24 @@ function App() {
 
   const handleAdd = (cart) => {
     // console.log("Added successfully");
-    console.log(cart);
+    // console.log(cart);
     // const newSelectName = [...selectName,cart];
     const isExists = selectName.find(name => name.id == cart.id);
 
     let temp = cart.salary
     // console.log(temp);
     if(isExists) {
-      return alert("Already booked. Please try again another.")
+      toast.warn('🦄 Already booked. Please try again another.', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+      // return alert("Already booked. Please try again another.")
     }
     else{
       
@@ -31,7 +44,17 @@ function App() {
 
       const remain = Budget - temp;
       if(remain < 0){
-        return alert("Not enough balance.")
+        toast.warn('🦄 Not enough balance.', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+        // return alert("Not enough balance.")
       }
       else{
         setRemaining(remain);
@@ -61,6 +84,7 @@ function App() {
       
       <h1>Hello world!</h1>
       <Carts remaining={remaining} totalCost={totalCost} selectName={selectName} handleAdd={handleAdd} handleRemove={handleRemove}></Carts>
+      <ToastContainer></ToastContainer>
     </>
   )
 }
